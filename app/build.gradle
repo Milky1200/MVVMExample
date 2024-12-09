@@ -1,0 +1,63 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace 'com.example.mvvmexample'
+    compileSdk 34
+
+    buildFeatures {
+        dataBinding true
+    }
+    defaultConfig {
+        applicationId "com.example.mvvmexample"
+        minSdk 28
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // Lifecycle components: ViewModel and LiveData
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+
+    // DataBinding (No explicit dependency required; enabled in build.gradle)
+    // Enable in the buildFeatures section (see below)
+
+    // Room Database
+    implementation 'androidx.room:room-runtime:2.5.2'
+    annotationProcessor 'androidx.room:room-compiler:2.5.2'
+
+    // Retrofit for network requests
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // For JSON conversion
+
+    // Optional dependencies:
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1' // Lifecycle-aware components
+    implementation 'androidx.activity:activity-ktx:1.8.0' // For Activity-specific ViewModel support
+
+}
